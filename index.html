@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b0f17" />
+    <title>Game of Thrones — Episode Guide (Unofficial)</title>
+    <meta
+      name="description"
+      content="An unofficial, offline-friendly episode guide for Game of Thrones with seasons, episodes, and original summaries."
+    />
+    <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <noscript>
+      <div class="panel" style="margin: 16px; padding: 14px;">
+        <strong>JavaScript is required.</strong>
+        This app loads episode data and navigation using JavaScript.
+      </div>
+    </noscript>
+    <header class="topbar">
+      <div class="brand">
+        <img class="brand__mark" src="./assets/icon.svg" alt="" />
+        <div class="brand__text">
+          <div class="brand__title">Game of Thrones</div>
+          <div class="brand__subtitle">Episode Guide (Unofficial)</div>
+        </div>
+      </div>
+
+      <div class="topbar__actions">
+        <button id="installBtn" class="btn btn--ghost" type="button" hidden>Install</button>
+        <button id="aboutBtn" class="btn btn--ghost" type="button">About</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="panel panel--left">
+        <div class="panel__section">
+          <label class="label" for="search">Search</label>
+          <input id="search" class="input" type="search" placeholder="Search episodes…" autocomplete="off" />
+          <div id="searchMeta" class="muted" aria-live="polite"></div>
+        </div>
+
+        <div class="panel__section">
+          <div class="label">Seasons</div>
+          <nav id="seasonList" class="seasonList" aria-label="Seasons"></nav>
+        </div>
+
+        <div class="panel__section panel__section--grow">
+          <div class="label" id="episodeListLabel">Episodes</div>
+          <nav id="episodeList" class="episodeList" aria-labelledby="episodeListLabel"></nav>
+        </div>
+      </aside>
+
+      <section class="panel panel--main" aria-label="Episode details">
+        <div class="hero">
+          <img id="heroImg" class="hero__img" src="./assets/hero.svg" alt="" />
+          <div class="hero__overlay" aria-hidden="true"></div>
+          <div class="hero__content">
+            <div id="crumbs" class="crumbs"></div>
+            <h1 id="title" class="title">Select an episode</h1>
+            <div id="air" class="muted"></div>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="toolbar">
+            <div class="seg" role="group" aria-label="Spoiler level">
+              <span class="seg__label">Spoilers</span>
+              <button id="spoilerHiddenBtn" class="seg__btn" type="button" aria-pressed="false">Hidden</button>
+              <button id="spoilerTeaserBtn" class="seg__btn" type="button" aria-pressed="false">Teaser</button>
+              <button id="spoilerFullBtn" class="seg__btn" type="button" aria-pressed="false">Full</button>
+            </div>
+            <button id="prevBtn" class="btn" type="button">Previous</button>
+            <button id="nextBtn" class="btn" type="button">Next</button>
+          </div>
+
+          <div id="summaryWrap" class="summaryWrap">
+            <p id="summary" class="summary"></p>
+            <div id="revealRow" class="revealRow" hidden>
+              <button id="revealBtn" class="btn" type="button">Reveal summary</button>
+              <div class="muted">Spoiler-safe mode hides details by default.</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card__title">Quick links</div>
+            <div class="card__body">
+              <button id="randomBtn" class="btn btn--ghost" type="button">Random episode</button>
+              <button id="copyBtn" class="btn btn--ghost" type="button">Copy episode link</button>
+            </div>
+          </div>
+
+          <footer class="footer">
+            <div class="muted">
+              Unofficial fan-made guide. Not affiliated with HBO or George R.R. Martin. All summaries here are original.
+            </div>
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="aboutDialog" class="dialog">
+      <form method="dialog" class="dialog__inner">
+        <div class="dialog__title">About this app</div>
+        <div class="dialog__body">
+          <p>
+            This is an <strong>unofficial</strong> episode guide for <em>Game of Thrones</em>, built as a simple offline-ready web app.
+            It includes every season and episode with short <strong>original</strong> summaries.
+          </p>
+          <p>
+            Images included are safe placeholder artwork (not screenshots). You can replace them by swapping files in
+            <code>assets/</code>.
+          </p>
+          <p class="muted">
+            Tip: For offline install (PWA), open this using a local web server (not <code>file://</code>), then click “Install”.
+          </p>
+        </div>
+        <div class="dialog__actions">
+          <button class="btn" value="close">Close</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
